@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "984448333829",
+    "firebase_url": "https://moti-a1b1f.firebaseio.com",
+    "project_id": "moti-a1b1f",
+    "storage_bucket": "moti-a1b1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984448333829:android:cd9e7b9a74400356",
+        "android_client_info": {
+          "package_name": "com.example.hunter.motiva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984448333829-3m5f9mr1a1smal3ie11ql49vqn4bfgr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByvPlQjFwQOpURZ3okznLWH5D2nD7s2wQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
