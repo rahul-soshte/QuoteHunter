@@ -51,8 +51,6 @@ static long n;
         imageButton = (Button) findViewById(R.id.imageButton2);
         textView = (TextView) findViewById(R.id.url);
 
-        //  Random random=new Random();
-        //Toast.makeText(this,Integer.toString(random.nextInt(45)),Toast.LENGTH_LONG).show();
 
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -65,7 +63,6 @@ static long n;
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         n = dataSnapshot.getChildrenCount();
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
@@ -85,15 +82,8 @@ static long n;
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         value = dataSnapshot.getValue(String.class);
-
-                        //Picasso.with(MainActivity2.this)
-                          //      .load(value)
-                            //    .into(imageView);
-                        Glide.with(MainActivity2.this).load(value).into(imageView);
-                      //  Toast.makeText(MainActivity2.this,value,Toast.LENGTH_LONG).show();
-                        //textView.setText(value);
+                     Glide.with(getApplicationContext()).load(value).into(imageView);
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                     }
@@ -102,29 +92,6 @@ static long n;
             }
         });
     }
-
-        @Override
-        protected void onStart() {
-            super.onStart();
-        //    https://firebasestorage.googleapis.com/v0/b/moti-a1b1f.appspot.com/o/2.jpg?alt=media&token=c241ecfd-5cbd-40dc-8fe5-0b45d1c9b0c6
-         //   String url="https://firebasestorage.googleapis.com/v0/b/moti-a1b1f.appspot.com/o/2.jpg?alt=media&token=c241ecfd-5cbd-40dc-8fe5-0b45d1c9b0c6";
-
-            //Picasso.with(MainActivity2.this)
-              //      .load(url)
-                //    .into(imageView);
-
-            String url="https://firebasestorage.googleapis.com/v0/b/moti-a1b1f.appspot.com/o/1.jpg?alt=media&token=762ccf25-4fc3-4f16-a611-5061f6c6bb10";
-            //Picasso.with(MainActivity2.this)
-              //      .load(url)
-                //    .into(imageView);
-            Glide.with(this).load(url).into(imageView);
-//            String url="https://firebasestorage.googleapis.com/v0/b/moti-a1b1f.appspot.com/o/2.jpg?alt=media&token=c241ecfd-5cbd-40dc-8fe5-0b45d1c9b0c6";
-
-            //Toast.makeText(this,value,Toast.LENGTH_LONG).show();
-        }
-       // Picasso.with(MainActivity2.this)
-         //       .load(value)
-           //     .into(imageView);
 
     }
 
