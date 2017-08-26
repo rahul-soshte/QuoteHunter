@@ -6,10 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,11 +42,11 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MainActivity2 extends AppCompatActivity {
     ImageView imageView;
     Button imageButton;
-DatabaseReference rootRef,demoRef;
-TextView textView;
-static long n;
+    DatabaseReference rootRef,demoRef;
+    TextView textView;
+    static long n;
     String value;
-
+ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +54,7 @@ static long n;
         imageView = (ImageView) findViewById(R.id.imageView);
         imageButton = (Button) findViewById(R.id.imageButton2);
         textView = (TextView) findViewById(R.id.url);
-
+        progressBar=(ProgressBar)findViewById(R.id.progress);
 
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -73,16 +77,15 @@ static long n;
                 Random r = new Random();
                 long number = (long) (r.nextDouble() * n);
 
-                //Random random1=new Random();
-                //Integer i=random1.nextLong((int)n);
-                // long v = ThreadLocalRandom.current().nextLong(n);
-
                 demoRef = rootRef.child(Long.toString(number));
                 demoRef.child("img_url").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         value = dataSnapshot.getValue(String.class);
-                     Glide.with(getApplicationContext()).load(value).into(imageView);
+
+                     Glide.with(getApplicationContext())
+                             .load(value)
+                             .into(imageView);
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
