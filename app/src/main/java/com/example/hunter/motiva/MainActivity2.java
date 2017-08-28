@@ -34,6 +34,8 @@ ProgressBar progressBar;
         textView = (TextView) findViewById(R.id.url);
         progressBar=(ProgressBar)findViewById(R.id.progress);
 
+        Glide.with(getApplicationContext()).load(R.drawable.hunter).into(imageView);
+
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
 
