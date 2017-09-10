@@ -1,4 +1,4 @@
-package com.example.hunter.motiva;
+package com.hunterlab.hunter.motiva;
 
 import org.junit.Test;
 

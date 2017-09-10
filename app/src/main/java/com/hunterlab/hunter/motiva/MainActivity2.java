@@ -1,4 +1,4 @@
-package com.example.hunter.motiva;
+package com.hunterlab.hunter.motiva;
 
 
 import android.os.Bundle;
@@ -15,13 +15,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.Random;
+
 //https://stackoverflow.com/questions/42186839/how-to-get-a-random-object-from-firebase-database-in-android
 public class MainActivity2 extends AppCompatActivity {
     ImageView imageView;
     Button imageButton;
     DatabaseReference rootRef,demoRef;
     TextView textView;
+    TextView hunter;
     static long n;
     String value;
 ProgressBar progressBar;
@@ -33,15 +36,19 @@ ProgressBar progressBar;
         imageButton = (Button) findViewById(R.id.imageButton2);
         textView = (TextView) findViewById(R.id.url);
         progressBar=(ProgressBar)findViewById(R.id.progress);
+        hunter=(TextView)findViewById(R.id.hunter);
 
-        Glide.with(getApplicationContext()).load(R.drawable.hunter).into(imageView);
-
+ //       Glide.with(getApplicationContext()).load(R.drawable.hunter).into(imageView);
+        progressBar.setVisibility(View.GONE);
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                progressBar.setVisibility(View.VISIBLE);
+                hunter.setVisibility(View.GONE);
                 rootRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -69,14 +76,10 @@ ProgressBar progressBar;
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
+
                     }
                 });
-
             }
         });
     }
-
     }
-
-
-

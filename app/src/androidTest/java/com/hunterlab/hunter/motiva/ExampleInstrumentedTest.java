@@ -1,4 +1,4 @@
-package com.example.hunter.motiva;
+package com.hunterlab.hunter.motiva;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
