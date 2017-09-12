@@ -1,7 +1,9 @@
 package com.hunterlab.hunter.motiva;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public class MainActivity2 extends AppCompatActivity {
     static long n;
     String value;
 ProgressBar progressBar;
+    static int number;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,10 @@ ProgressBar progressBar;
         progressBar.setVisibility(View.GONE);
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
+
+
+        SharedPreferences sp = getSharedPreferences("LOL", Activity.MODE_PRIVATE);
+        number = sp.getInt("hey", -1);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,11 +73,20 @@ ProgressBar progressBar;
                         }
                     });
 
+                   // Random r = new Random();
+                   // if(number==-1)
+                    //{
+                     //   number=0;
+                    //}
+                    if(number == n || number > n )
+                    {
+                     number=0;
+                    }
+                    else{
+                        number++;
+                    }
 
-                    Random r = new Random();
-                    long number = (long) (r.nextDouble() * n);
-
-                    demoRef = rootRef.child(Long.toString(number));
+                    demoRef = rootRef.child(Integer.toString(number));
                     demoRef.child("img_url").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -94,6 +110,16 @@ ProgressBar progressBar;
             }
         });
     }
+@Override
+protected void onStop()
+{
+    super.onStop();
+    SharedPreferences sp1 = getSharedPreferences("LOL", Activity.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sp1.edit();
+    editor.putInt("hey", number);
+    editor.commit();
+
+}
 
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
