@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 
-//https://stackoverflow.com/questions/42186839/how-to-get-a-random-object-from-firebase-database-in-android
+
 public class MainActivity2 extends AppCompatActivity {
     ImageView imageView;
     Button imageButton;
@@ -56,18 +56,20 @@ ProgressBar progressBar;
         number = sp.getInt("hey", -1);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 if (isOnline()) {
                     progressBar.setVisibility(View.VISIBLE);
                     hunter.setVisibility(View.GONE);
                     rootRef.addValueEventListener(new ValueEventListener() {
+
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             n = dataSnapshot.getChildrenCount();
                         }
 
-                        @Override
+                     @Override
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
