@@ -36,6 +36,7 @@ public class MainActivity2 extends AppCompatActivity {
     String value;
 ProgressBar progressBar;
     static int number;
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,7 @@ ProgressBar progressBar;
         rootRef = FirebaseDatabase.getInstance().getReference();
 
 
-        SharedPreferences sp = getSharedPreferences("LOL", Activity.MODE_PRIVATE);
+        sp = getSharedPreferences("LOL", Activity.MODE_PRIVATE);
         number = sp.getInt("hey", -1);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -116,10 +117,10 @@ ProgressBar progressBar;
 protected void onStop()
 {
     super.onStop();
-    SharedPreferences sp1 = getSharedPreferences("LOL", Activity.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sp1.edit();
+     sp = getSharedPreferences("LOL", Activity.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sp.edit();
     editor.putInt("hey", number);
-    editor.commit();
+    editor.apply();
 
 }
 
