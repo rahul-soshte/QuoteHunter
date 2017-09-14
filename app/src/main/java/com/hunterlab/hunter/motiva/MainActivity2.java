@@ -1,13 +1,15 @@
 package com.hunterlab.hunter.motiva;
 
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,8 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-import java.util.Random;
-
 
 public class MainActivity2 extends AppCompatActivity {
     ImageView imageView;
@@ -35,27 +35,27 @@ public class MainActivity2 extends AppCompatActivity {
     static long n;
     String value;
 ProgressBar progressBar;
-    static int number;
-    SharedPreferences sp;
+     static int number;
+  String tableName = MotDatabaseHelper.tableName;
+    public static SQLiteDatabase newDB;
+ public static MotDatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
         imageView = (ImageView) findViewById(R.id.imageView);
         imageButton = (Button) findViewById(R.id.imageButton2);
         textView = (TextView) findViewById(R.id.url);
         progressBar=(ProgressBar)findViewById(R.id.progress);
         hunter=(TextView)findViewById(R.id.hunter);
 
- //       Glide.with(getApplicationContext()).load(R.drawable.hunter).into(imageView);
         progressBar.setVisibility(View.GONE);
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
 
-
-        sp = getSharedPreferences("LOL", Activity.MODE_PRIVATE);
-        number = sp.getInt("hey", -1);
-
+        openAndQueryDatabase();
         imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -76,18 +76,18 @@ ProgressBar progressBar;
                         }
                     });
 
-                   // Random r = new Random();
-                   // if(number==-1)
-                    //{
-                     //   number=0;
-                    //}
+
+
                     if(number == n || number > n )
                     {
-                     number=0;
+                     number = 0;
                     }
                     else{
                         number++;
                     }
+
+                    dbHelper.updateLastValue(newDB,number);
+
 
                     demoRef = rootRef.child(Integer.toString(number));
                     demoRef.child("img_url").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -113,16 +113,53 @@ ProgressBar progressBar;
             }
         });
     }
-@Override
-protected void onStop()
-{
-    super.onStop();
-     sp = getSharedPreferences("LOL", Activity.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sp.edit();
-    editor.putInt("hey", number);
-    editor.apply();
 
-}
+
+private void openAndQueryDatabase() {
+
+        try {
+
+            dbHelper = new MotDatabaseHelper(this.getApplicationContext());
+            newDB = dbHelper.getWritableDatabase();
+
+            Cursor c = newDB.rawQuery("SELECT * FROM " +
+                    tableName , null);
+
+            if(c != null)
+            {
+                if(c.moveToFirst()) {
+                    number = c.getInt(c.getColumnIndex("Last"));
+                    c.close();
+                }
+            }
+            else{
+                number = -1;
+            }
+
+        } catch (SQLiteException e ) {
+            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
+        }
+
+    }
+
+    private void openAndQueryDatabase2() {
+        newDB.beginTransaction();
+        try {
+            newDB.execSQL("UPDATE " + tableName + " SET Last=" + number);
+            newDB.setTransactionSuccessful();
+        }finally {
+            newDB.endTransaction();
+        }
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        newDB.close();
+        super.onDestroy();
+
+
+    }
 
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
