@@ -3,12 +3,12 @@
     package="com.hunterlab.hunter.motiva">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
 
         android:allowBackup="true"
-        android:icon="@mipmap/lol"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:largeHeap="true"
