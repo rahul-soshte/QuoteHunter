@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Random;
 
 
 public class MainActivity2 extends AppCompatActivity {
@@ -34,11 +35,8 @@ public class MainActivity2 extends AppCompatActivity {
     TextView hunter;
     static long n;
     String value;
-ProgressBar progressBar;
-     static int number;
-  String tableName = MotDatabaseHelper.tableName;
-    public static SQLiteDatabase newDB;
- public static MotDatabaseHelper dbHelper;
+    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +53,6 @@ ProgressBar progressBar;
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
 
-        openAndQueryDatabase();
         imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -77,19 +74,9 @@ ProgressBar progressBar;
                     });
 
 
-
-                    if(number == n || number > n )
-                    {
-                     number = 0;
-                    }
-                    else{
-                        number++;
-                    }
-
-                    dbHelper.updateLastValue(newDB,number);
-
-
-                    demoRef = rootRef.child(Integer.toString(number));
+                    Random r = new Random();
+                    long number = (long) (r.nextDouble() * n);
+                    demoRef = rootRef.child(Long.toString(number));
                     demoRef.child("img_url").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -107,58 +94,10 @@ ProgressBar progressBar;
                     });
                 }
                 else{
-
                     Toast.makeText(getApplicationContext(),"Not Connected to Internet!",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-
-private void openAndQueryDatabase() {
-
-        try {
-
-            dbHelper = new MotDatabaseHelper(this.getApplicationContext());
-            newDB = dbHelper.getWritableDatabase();
-
-            Cursor c = newDB.rawQuery("SELECT * FROM " +
-                    tableName , null);
-
-            if(c != null)
-            {
-                if(c.moveToFirst()) {
-                    number = c.getInt(c.getColumnIndex("Last"));
-                    c.close();
-                }
-            }
-            else{
-                number = -1;
-            }
-
-        } catch (SQLiteException e ) {
-            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
-        }
-
-    }
-
-    private void openAndQueryDatabase2() {
-        newDB.beginTransaction();
-        try {
-            newDB.execSQL("UPDATE " + tableName + " SET Last=" + number);
-            newDB.setTransactionSuccessful();
-        }finally {
-            newDB.endTransaction();
-        }
-    }
-
-    @Override
-    public void onDestroy()
-    {
-        newDB.close();
-        super.onDestroy();
-
-
     }
 
     public boolean isOnline() {
