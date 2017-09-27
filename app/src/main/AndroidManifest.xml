@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:largeHeap="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme12">
         <activity android:name="com.hunterlab.hunter.motiva.MainActivity2">
 
             <intent-filter>

@@ -1,15 +1,16 @@
 package com.hunterlab.hunter.motiva;
 
 
+
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
+
+import android.graphics.Color;
+
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,7 +30,7 @@ import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity {
     ImageView imageView;
-    Button imageButton;
+    Button nextButton;
     DatabaseReference rootRef,demoRef;
     TextView textView;
     TextView hunter;
@@ -44,16 +45,16 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         imageView = (ImageView) findViewById(R.id.imageView);
-        imageButton = (Button) findViewById(R.id.imageButton2);
+        nextButton = (Button) findViewById(R.id.imageButton2);
         textView = (TextView) findViewById(R.id.url);
         progressBar=(ProgressBar)findViewById(R.id.progress);
         hunter=(TextView)findViewById(R.id.hunter);
-
+        nextButton.setBackgroundColor(Color.WHITE);
         progressBar.setVisibility(View.GONE);
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
