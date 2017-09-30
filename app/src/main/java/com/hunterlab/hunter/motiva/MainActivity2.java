@@ -33,7 +33,7 @@ public class MainActivity2 extends AppCompatActivity {
     Button nextButton;
     DatabaseReference rootRef,demoRef;
     TextView textView;
-    TextView hunter;
+
     static long n;
     String value;
     ProgressBar progressBar;
@@ -48,11 +48,15 @@ public class MainActivity2 extends AppCompatActivity {
         nextButton = (Button) findViewById(R.id.imageButton2);
         textView = (TextView) findViewById(R.id.url);
         progressBar=(ProgressBar)findViewById(R.id.progress);
-        hunter=(TextView)findViewById(R.id.hunter);
+
         nextButton.setBackgroundColor(Color.WHITE);
         progressBar.setVisibility(View.GONE);
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.hunter)
+                .into(imageView);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
 
@@ -60,7 +64,7 @@ public class MainActivity2 extends AppCompatActivity {
             public void onClick(View view) {
                 if (isOnline()) {
                     progressBar.setVisibility(View.VISIBLE);
-                    hunter.setVisibility(View.GONE);
+
                     rootRef.addValueEventListener(new ValueEventListener() {
 
                         @Override
