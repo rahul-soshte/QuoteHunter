@@ -23,4 +23,13 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="AppTheme12.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme12.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme12.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
