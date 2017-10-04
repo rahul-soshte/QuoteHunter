@@ -8,4 +8,12 @@
     tools:context="com.hunterlab.hunter.motiva.MotivaActivity"
     tools:showIn="@layout/app_bar_motiva">
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
+
 </android.support.constraint.ConstraintLayout>

@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+
     <include
         layout="@layout/app_bar_motiva"
         android:layout_width="match_parent"
@@ -19,6 +20,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:menu="@menu/activity_motiva_drawer" />
+        app:menu="@menu/activity_motiva_drawer" >
+
+        </android.support.design.widget.NavigationView>
+
+
 
 </android.support.v4.widget.DrawerLayout>
