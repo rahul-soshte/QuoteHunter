@@ -16,7 +16,7 @@
         </activity>
         <activity
             android:name=".MotivaActivity"
-            android:label="@string/title_activity_motiva"
+            android:label="The Quotes"
             android:theme="@style/AppTheme12.NoActionBar">
 
             <intent-filter>

@@ -73,10 +73,10 @@ public class MotivaActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
         }
-
+*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -93,6 +93,7 @@ public class MotivaActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             fragment=new FamousFragment();
         }
+
 
         if(fragment!=null) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
