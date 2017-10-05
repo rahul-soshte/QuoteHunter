@@ -19,6 +19,7 @@ import android.view.MenuItem;
 public class MotivaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class MotivaActivity extends AppCompatActivity
          //               .setAction("Action", null).show();
        //     }
        // });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

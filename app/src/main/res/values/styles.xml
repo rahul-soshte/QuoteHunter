@@ -12,6 +12,7 @@
     <style name="AppTheme12" parent="Theme.AppCompat.Light">
         <!-- This is the styling for action bar -->
         <item name="actionBarStyle">@style/MyActionBar</item>
+
     </style>
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
@@ -22,6 +23,7 @@
     <style name="MyActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/black</item>
     </style>
+
 
     <style name="AppTheme12.NoActionBar">
         <item name="windowActionBar">false</item>
