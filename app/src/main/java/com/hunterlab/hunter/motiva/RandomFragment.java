@@ -104,7 +104,7 @@ public class RandomFragment extends Fragment {
                 if (isOnline()) {
                     progressBar.setVisibility(View.VISIBLE);
 
-                    rootRef.addValueEventListener(new ValueEventListener() {
+                    rootRef.child("quotes").addValueEventListener(new ValueEventListener() {
 
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -120,7 +120,7 @@ public class RandomFragment extends Fragment {
 
                     Random r = new Random();
                     long number = (long) (r.nextDouble() * n);
-                    demoRef = rootRef.child(Long.toString(number));
+                    demoRef = rootRef.child("quotes").child(Long.toString(number));
                     demoRef.child("img_url").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {

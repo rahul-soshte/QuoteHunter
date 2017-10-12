@@ -9,10 +9,11 @@
     tools:openDrawer="start">
 
 
+
     <include
         layout="@layout/app_bar_motiva"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -20,6 +21,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_motiva"
         app:menu="@menu/activity_motiva_drawer" >
 
         </android.support.design.widget.NavigationView>
