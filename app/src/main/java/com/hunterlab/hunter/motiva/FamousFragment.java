@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,11 +15,14 @@ import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 /**
@@ -37,6 +41,8 @@ public class FamousFragment extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private DatabaseReference rootRef,childRef;
+    private ArrayList<Author> authorArrayList=new ArrayList<>();
+
 //    private AuthorAdapter authorAdapter;
 
 //    String[] strings = {"Alan Turing","Albert Einstein", "Bernard Brauch", "Confucius" ,"Nikolas Tesla","Zed Zepplin" };
@@ -44,7 +50,7 @@ public class FamousFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private AuthorAdapter authorAdapter;
     private OnFragmentInteractionListener mListener;
 
     public FamousFragment() {
@@ -92,11 +98,51 @@ public class FamousFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView=(RecyclerView)getActivity().findViewById(R.id.recylerview);
         recyclerView.setLayoutManager(linearLayoutManager);
+        authorAdapter=new AuthorAdapter(authorArrayList);
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        recyclerView.setAdapter(authorAdapter);
 
-        FirebaseDatabase secondaryDatabase = FirebaseDatabase.getInstance();
-        
+        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity().getApplicationContext()));
+        //   recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        /*
+        rootRef.child("author").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot authorsnapshot:dataSnapshot.getChildren())
+                {
 
+                   // String id=authorsnapshot.getKey();
+                    String authorname=authorsnapshot.child("1").child("authorname").getValue(String.class);
+                    authorArrayList.add(new Author(authorname));
+                }
+                authorAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        */
+rootRef.child("author").addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        for(DataSnapshot authorsnapshot:dataSnapshot.getChildren())
+        {
+            //  String id=authorsnapshot.getKey();
+            Author author=authorsnapshot.getValue(Author.class);
+            authorArrayList.add(author);
+        }
+        authorAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
+    }
+});
     }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
