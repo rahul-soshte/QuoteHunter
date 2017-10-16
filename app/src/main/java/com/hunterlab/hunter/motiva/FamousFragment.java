@@ -1,6 +1,7 @@
 package com.hunterlab.hunter.motiva;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -106,33 +108,27 @@ public class FamousFragment extends Fragment {
         //   recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        /*
-        rootRef.child("author").addValueEventListener(new ValueEventListener() {
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot authorsnapshot:dataSnapshot.getChildren())
-                {
-
-                   // String id=authorsnapshot.getKey();
-                    String authorname=authorsnapshot.child("1").child("authorname").getValue(String.class);
-                    authorArrayList.add(new Author(authorname));
-                }
-                authorAdapter.notifyDataSetChanged();
+            public void onClick(View view, int position) {
+            Author author= authorArrayList.get(position);
+                Toast.makeText(getActivity().getApplicationContext(),author.getId(),Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onLongClick(View view, int position) {
 
             }
-        });
-        */
+        }));
+
 rootRef.child("author").addValueEventListener(new ValueEventListener() {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         for(DataSnapshot authorsnapshot:dataSnapshot.getChildren())
         {
-            //  String id=authorsnapshot.getKey();
             Author author=authorsnapshot.getValue(Author.class);
+            String id=authorsnapshot.getKey();
+            author.setId(id);
             authorArrayList.add(author);
         }
         authorAdapter.notifyDataSetChanged();

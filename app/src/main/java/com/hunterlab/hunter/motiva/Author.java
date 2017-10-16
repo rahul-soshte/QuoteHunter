@@ -5,12 +5,12 @@ package com.hunterlab.hunter.motiva;
  */
 
 public class Author {
-    //public String id;
+    public String id;
     public String authorname;
 
     public Author(String authorname)
     {
-        //this.id=id;
+
         this.authorname=authorname;
     }
 
@@ -19,7 +19,17 @@ public class Author {
 
     }
 
+
     public String getAuthorname() {
         return authorname;
+    }
+
+    public void setId(String id)
+    {
+        this.id=id;
+    }
+    public String getId()
+    {
+        return id;
     }
 }
