@@ -112,7 +112,10 @@ public class FamousFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
             Author author= authorArrayList.get(position);
-                Toast.makeText(getActivity().getApplicationContext(),author.getId(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity().getApplicationContext(),author.getId(),Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity().getApplicationContext(),QuoteActivity.class);
+                intent.putExtra("id",author.getId());
+                startActivity(intent);
             }
 
             @Override
