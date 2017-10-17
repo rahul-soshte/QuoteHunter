@@ -100,7 +100,7 @@ public class FamousFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView=(RecyclerView)getActivity().findViewById(R.id.recylerview);
         recyclerView.setLayoutManager(linearLayoutManager);
-        authorAdapter=new AuthorAdapter(authorArrayList);
+        authorAdapter = new AuthorAdapter(authorArrayList);
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         recyclerView.setAdapter(authorAdapter);
 
