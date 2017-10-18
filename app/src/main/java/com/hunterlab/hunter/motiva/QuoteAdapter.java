@@ -33,7 +33,12 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(QuoteAdapter.ViewHolder holder, int position) {
         String quote = aDataSet.get(position);
-        holder.mTextView.setText(quote);
+        StringBuilder stringBuilder=new StringBuilder();
+        stringBuilder.append("\"");
+        stringBuilder.append(quote);
+        stringBuilder.append("\"");
+
+        holder.mTextView.setText(stringBuilder.toString());
     }
 
     @Override

@@ -124,13 +124,13 @@ public class RandomFragment extends Fragment {
                     demoRef.child("img_url").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            value = dataSnapshot.getValue(String.class);
 
+                            value = dataSnapshot.getValue(String.class);
                             Glide.with(getActivity().getApplicationContext())
                                     .load(value)
                                     .into(imageView);
-                        }
 
+                        }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 

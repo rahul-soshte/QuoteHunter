@@ -31,7 +31,6 @@ RecyclerView recyclerView;
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView=(RecyclerView)findViewById(R.id.recylerview);
         recyclerView.setLayoutManager(linearLayoutManager);
-
         quoteAdapter = new QuoteAdapter(quotesList);
 
         recyclerView.setAdapter(quoteAdapter);
@@ -58,4 +57,5 @@ RecyclerView recyclerView;
             }
         });
     }
+
 }
