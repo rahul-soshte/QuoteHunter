@@ -55,7 +55,7 @@ public class MainActivity2 extends AppCompatActivity {
         rootRef = FirebaseDatabase.getInstance().getReference();
 
         Glide.with(getApplicationContext())
-                .load(R.drawable.hunter)
+                .load(R.drawable.n)
                 .into(imageView);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
