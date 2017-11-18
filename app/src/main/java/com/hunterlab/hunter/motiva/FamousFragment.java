@@ -12,12 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -97,7 +91,7 @@ public class FamousFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView=(RecyclerView)getActivity().findViewById(R.id.recylerview);
         recyclerView.setLayoutManager(linearLayoutManager);
         authorAdapter = new AuthorAdapter(authorArrayList);
