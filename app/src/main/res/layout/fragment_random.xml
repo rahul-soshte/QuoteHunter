@@ -35,11 +35,14 @@
 
     <Button
         android:id="@+id/imageButton2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NEXT"
         android:layout_below="@+id/cardView"
-        android:layout_centerHorizontal="true" />
+        android:layout_toEndOf="@+id/url"
+        android:layout_toLeftOf="@+id/shabutton2"
+        android:layout_toRightOf="@+id/url"
+        android:layout_toStartOf="@+id/shabutton2"
+        android:text="NEXT" />
     <!--android:background="@drawable/button_selector"-->
 
     <TextView
@@ -50,5 +53,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/shabutton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageButton2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/cardView"
+        android:background="@drawable/my_button_bg"
+        android:text="SHARE" />
 
 </RelativeLayout>

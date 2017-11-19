@@ -41,7 +41,7 @@ public class RandomFragment extends Fragment {
     Button nextButton;
     DatabaseReference rootRef,demoRef;
     TextView textView;
-
+    Button shareButton;
     static long n;
     String value;
     ProgressBar progressBar;
@@ -84,10 +84,10 @@ public class RandomFragment extends Fragment {
 
         super.onActivityCreated(savedInstanceState);
         imageView = (ImageView) getActivity().findViewById(R.id.imageView);
+        shareButton = (Button) getActivity().findViewById(R.id.shabutton2);
         nextButton = (Button) getActivity().findViewById(R.id.imageButton2);
         textView = (TextView) getActivity().findViewById(R.id.url);
         progressBar=(ProgressBar)getActivity().findViewById(R.id.progress);
-
         nextButton.setBackgroundColor(Color.WHITE);
         progressBar.setVisibility(View.GONE);
         //database reference pointing to root of database

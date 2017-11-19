@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MotivaActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,RandomFragment.OnFragmentInteractionListener,FamousFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,RandomFragment.OnFragmentInteractionListener,FamousFragment.OnFragmentInteractionListener,PoemFragment.OnFragmentInteractionListener{
 
 
     @Override
@@ -82,7 +82,10 @@ public class MotivaActivity extends AppCompatActivity
         } else if (id == R.id.famous) {
             fragment=new FamousFragment();
         }
-
+        else if(id == R.id.poem)
+        {
+            fragment=new PoemFragment();
+        }
 
         if(fragment!=null) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
