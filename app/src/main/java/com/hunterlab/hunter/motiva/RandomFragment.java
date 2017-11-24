@@ -1,12 +1,16 @@
 package com.hunterlab.hunter.motiva;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Random;
 
 
@@ -93,6 +100,39 @@ public class RandomFragment extends Fragment {
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
 
+shareButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        /*
+        Intent intent=new Intent(Intent.ACTION_SEND);
+        intent.setType("image/*");
+        //Bitmap viewBitmap = Bitmap.createBitmap(imageView.getWidth(),imageView.getHeight(),Bitmap.Config.ARGB_8888);//i is imageview whch u want to convert in bitmap
+       intent.putExtra(Intent.EXTRA_STREAM,imageView.getDrawingCache());
+        startActivity(intent);
+        */
+       // ImageView iv = (ImageView )adapter.getmCurrentView();
+        String fileName = "image.jpg";
+        imageView.setDrawingCacheEnabled(true);
+        Bitmap bitmap = imageView.getDrawingCache();
+        try
+        {
+            FileOutputStream ostream = getActivity().openFileOutput( fileName, Context.MODE_WORLD_READABLE);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, ostream);
+            ostream.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/*");
+        //share.putExtra(Intent.EXTRA_SUBJECT, "Great photo from Poland!");
+        // share.putExtra(Intent.EXTRA_TEXT, "Hi,  I'm sharing with you this great picture!");
+        share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile( new File( getActivity().getFileStreamPath( fileName).getAbsolutePath())));
+        startActivity(Intent.createChooser(share,"Share via"));
+    }
+});
         Glide.with(getActivity().getApplicationContext())
                 .load(R.drawable.hunter)
                 .into(imageView);
@@ -209,4 +249,7 @@ public class RandomFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+
 }

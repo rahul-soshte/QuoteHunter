@@ -10,7 +10,7 @@
             android:title="Famous People" />
         <item
             android:id="@+id/poem"
-            android:title="Poems"
+            android:title="Categories"
             />
     </group>
 
