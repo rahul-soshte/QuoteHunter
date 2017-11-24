@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quotes</string>
+    <string name="app_name">QuoteHunter</string>
     <string name="title_activity_motiva">MotivaActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
