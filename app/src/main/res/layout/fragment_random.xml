@@ -8,27 +8,26 @@
     >
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        card_view:cardBackgroundColor="@android:color/black"
-        android:id="@+id/cardView"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        card_view:cardBackgroundColor="@android:color/black">
 
         <ProgressBar
             android:id="@+id/progress"
-            android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:visibility="visible" />
 
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
+            android:layout_gravity="center" />
 
 
     </android.support.v7.widget.CardView>
@@ -42,8 +41,8 @@
         android:layout_toLeftOf="@+id/shabutton2"
         android:layout_toRightOf="@+id/url"
         android:layout_toStartOf="@+id/shabutton2"
+        android:background="@drawable/my_button_bg"
         android:text="NEXT" />
-    <!--android:background="@drawable/button_selector"-->
 
     <TextView
         android:id="@+id/url"
@@ -52,17 +51,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/my_button_bg"/>
 
     <Button
         android:id="@+id/shabutton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/imageButton2"
         android:layout_alignBottom="@+id/imageButton2"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/cardView"
         android:background="@drawable/my_button_bg"
+        android:layout_alignParentRight="true"
         android:text="SHARE" />
 
 </RelativeLayout>

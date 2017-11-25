@@ -39,10 +39,6 @@ public class FamousFragment extends Fragment {
     private DatabaseReference rootRef,childRef;
     private ArrayList<Author> authorArrayList=new ArrayList<>();
 
-//    private AuthorAdapter authorAdapter;
-
-//    String[] strings = {"Alan Turing","Albert Einstein", "Bernard Brauch", "Confucius" ,"Nikolas Tesla","Zed Zepplin" };
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;

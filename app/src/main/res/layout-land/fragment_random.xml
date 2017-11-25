@@ -43,7 +43,8 @@
         android:layout_marginTop="98dp"
         android:layout_toEndOf="@+id/cardView"
         android:layout_toRightOf="@+id/cardView"
-        android:text="NEXT" />
+        android:text="NEXT"
+        android:background="@drawable/my_button_bg"/>
     <!--android:background="@drawable/button_selector"-->
 
     <TextView

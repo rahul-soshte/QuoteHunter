@@ -95,7 +95,7 @@ public class RandomFragment extends Fragment {
         nextButton = (Button) getActivity().findViewById(R.id.imageButton2);
         textView = (TextView) getActivity().findViewById(R.id.url);
         progressBar=(ProgressBar)getActivity().findViewById(R.id.progress);
-        nextButton.setBackgroundColor(Color.WHITE);
+       // nextButton.setBackgroundColor(Color.WHITE);
         progressBar.setVisibility(View.GONE);
         //database reference pointing to root of database
         rootRef = FirebaseDatabase.getInstance().getReference();
