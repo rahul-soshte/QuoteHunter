@@ -19,7 +19,6 @@ public class Author {
 
     }
 
-
     public String getAuthorname() {
         return authorname;
     }

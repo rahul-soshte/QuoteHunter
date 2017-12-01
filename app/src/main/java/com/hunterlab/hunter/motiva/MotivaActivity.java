@@ -84,7 +84,7 @@ public class MotivaActivity extends AppCompatActivity
         }
         else if(id == R.id.poem)
         {
-            fragment=new CategoryFragment();
+           fragment=new CategoryFragment();
         }
 
         if(fragment!=null) {

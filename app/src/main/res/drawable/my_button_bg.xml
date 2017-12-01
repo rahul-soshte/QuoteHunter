@@ -11,7 +11,7 @@
     <item>
         <layer-list>
             <item android:right="5dp" android:top="5dp">
-                <shape>
+        E        <shape>
                     <corners android:radius="3dp" />
                     <solid android:color="#D6D6D6" />
                 </shape>
