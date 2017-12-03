@@ -33,7 +33,7 @@ public class MotivaActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container,new RandomFragment(), "visible_fragment");
+        ft.replace(R.id.container,new FamousFragment(), "visible_fragment");
         ft.commit();
     }
 
@@ -52,6 +52,7 @@ public class MotivaActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.motiva, menu);
         return true;
+
     }
 
     @Override
@@ -76,10 +77,7 @@ public class MotivaActivity extends AppCompatActivity
         int id = item.getItemId();
         Fragment fragment=null;
 
-        if (id == R.id.random) {
-            // Handle the camera action
-            fragment=new RandomFragment();
-        } else if (id == R.id.famous) {
+        if (id == R.id.famous) {
             fragment=new FamousFragment();
         }
         else if(id == R.id.poem)

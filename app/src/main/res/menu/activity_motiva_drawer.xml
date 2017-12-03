@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
+        <!--<item
             android:id="@+id/random"
-            android:title="Random" />
+            android:title="Random" />-->
         <item
             android:id="@+id/famous"
             android:title="Famous People" />

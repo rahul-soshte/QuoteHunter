@@ -124,10 +124,10 @@ public class CategoryFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-              //  Category category= categoryArrayList.get(position);
+                Category category= categoryArrayList.get(position);
                 //Toast.makeText(getActivity().getApplicationContext(),author.getId(),Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getActivity().getApplicationContext(),CategoryIndi.class);
-                //intent.putExtra("id",author.getId());
+                intent.putExtra("id",category.getId());
                 startActivity(intent);
             }
 
@@ -140,11 +140,13 @@ public class CategoryFragment extends Fragment {
         rootRef.child("categories").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                categoryArrayList.clear();
                 for(DataSnapshot catsnapshot:dataSnapshot.getChildren())
                 {
                     Category category=catsnapshot.getValue(Category.class);
-                    //String id=authorsnapshot.getKey();
-                  //  author.setId(id);
+                    String id=catsnapshot.getKey();
+                    category.setId(id);
                     categoryArrayList.add(category);
                 }
                 categoryAdapter.notifyDataSetChanged();

@@ -157,6 +157,7 @@ shareButton.setOnClickListener(new View.OnClickListener() {
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
                             value = dataSnapshot.getValue(String.class);
+                           Toast.makeText(getActivity().getApplicationContext(),value,Toast.LENGTH_SHORT).show();
                             Glide.with(getActivity().getApplicationContext())
                                     .load(value)
                                     .into(imageView);

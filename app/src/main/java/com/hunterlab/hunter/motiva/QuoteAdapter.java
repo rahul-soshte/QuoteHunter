@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 
 public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.ViewHolder> {
+
     private ArrayList<String> aDataSet;
 
     public QuoteAdapter(ArrayList<String> dataSet) {
