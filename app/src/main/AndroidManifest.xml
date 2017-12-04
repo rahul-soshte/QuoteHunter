@@ -26,7 +26,8 @@
         <activity
             android:name=".QuoteActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".CategoryIndi"></activity>
+        <activity android:name=".CategoryIndi"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

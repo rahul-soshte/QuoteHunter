@@ -52,4 +52,9 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.ViewHolder
                 mTextView = (TextView) itemView.findViewById(R.id.textAuthor);
             }
         }
+
+    public void updateList(ArrayList<Author> list){
+        aDataSet = list;
+        notifyDataSetChanged();
+    }
 }

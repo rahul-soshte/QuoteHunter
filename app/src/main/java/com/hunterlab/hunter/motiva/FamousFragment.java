@@ -9,9 +9,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +42,7 @@ public class FamousFragment extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private DatabaseReference rootRef,childRef;
     private ArrayList<Author> authorArrayList=new ArrayList<>();
-
+private EditText searchField;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -93,11 +97,10 @@ public class FamousFragment extends Fragment {
         authorAdapter = new AuthorAdapter(authorArrayList);
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         recyclerView.setAdapter(authorAdapter);
-
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity().getApplicationContext()));
+        searchField=(EditText)getActivity().findViewById(R.id.search);
         //   recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
 
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
@@ -133,6 +136,28 @@ rootRef.child("author").addValueEventListener(new ValueEventListener() {
 
     }
 });
+        searchField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                // filter your list from your input
+                filter(s.toString());
+                //you can use runnable postDelayed like 500 ms to delay search text
+            }
+        });
+
     }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -171,5 +196,20 @@ rootRef.child("author").addValueEventListener(new ValueEventListener() {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+
+
+    void filter(String text){
+        ArrayList<Author> temp = new ArrayList();
+        for(Author d: authorArrayList){
+            //or use .equal(text) with you want equal match
+            //use .toLowerCase() for better matches
+            if(d.getAuthorname().toLowerCase().contains(text.toLowerCase())){
+                temp.add(d);
+            }
+        }
+        //update recyclerview
+        authorAdapter.updateList(temp);
     }
 }

@@ -16,5 +16,5 @@
         android:paddingLeft="10dp"
         android:text="TextView"
         android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 </RelativeLayout>

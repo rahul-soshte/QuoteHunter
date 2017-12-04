@@ -93,10 +93,12 @@ public class MotivaActivity extends AppCompatActivity
             ft.commit();
         }
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void onFragmentInteraction(Uri uri){
         //you can leave it empty
