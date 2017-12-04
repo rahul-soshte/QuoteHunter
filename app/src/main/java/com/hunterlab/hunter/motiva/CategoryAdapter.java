@@ -50,4 +50,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             mTextView = (TextView) itemView.findViewById(R.id.categoryname);
         }
     }
+
+    public void updateList(ArrayList<Category> list){
+        aDataSet = list;
+        notifyDataSetChanged();
+    }
 }
